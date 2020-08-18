@@ -1,8 +1,8 @@
+require('dotenv').config();
 var db = require("../db");
 var bcrypt = require('bcrypt');
-
 var md5 = require('md5');
-
+var sgMail = require('@sendgrid/mail')
 
 module.exports.getLogin = (req, res) =>{
     res.render("login/login")
@@ -31,6 +31,17 @@ module.exports.postLogin = (req, res) =>{
             errors: ["user can not Login"],
             values:req.body
         })
+
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+
+        var msg = {
+            to: 'vyhoa112233@gmail.com',
+            from: '17110381@student.hcmute.edu.vn',
+            subject: 'Sending with SendGrid is Fun',
+            text: 'and easy to do anywhere, even with Node.js',
+            html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+        }
+        sgMail.send(msg)
         return;
     }
     if(user.password !== hashPassword && !bcrypt.compareSync(req.body.password, hash))

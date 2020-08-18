@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/VyHoa1613/lesson-8-book-store#readme",
   "dependencies": {
+    "@sendgrid/mail": "^7.2.3",
     "bcrypt": "^5.0.0",
     "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "lowdb": "^1.0.0",
     "md5": "^2.3.0",
